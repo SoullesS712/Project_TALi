@@ -46,9 +46,9 @@ class _RoadmapState extends State<Roadmap> {
         ),
         //subtitle: Text('can zoom in'),
       ),
-      //const Icon(
-      //Icons.favorite,
-      //)
+      const Icon(
+        Icons.favorite,
+      )
     ];
     return Scaffold(
       appBar: AppBar(
