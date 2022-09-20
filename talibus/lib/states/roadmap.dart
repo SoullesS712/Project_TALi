@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class Roadmap extends StatefulWidget {
   const Roadmap({Key? key}) : super(key: key);
@@ -47,16 +48,24 @@ class _RoadmapState extends State<Roadmap> {
         //subtitle: Text('can zoom in'),
       ),
       const Icon(
-        Icons.favorite,
-      )
+        Icons.directions_bus_sharp,
+      ),
+      Padding(
+        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+        child: AutoSizeText(
+          'Tali No.1',
+          textAlign: TextAlign.center,
+        ),
+      ),
     ];
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text("RoadMap"),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.green, Color.fromARGB(255, 187, 244, 54)],
+              colors: [Color(0xFF54436B), Color(0xFF50CB93), Color(0xFFACFFAD)],
               begin: Alignment.bottomRight,
               end: Alignment.topLeft,
             ),

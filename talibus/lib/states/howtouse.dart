@@ -13,6 +13,13 @@ class _HowtouseState extends State<Howtouse> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Howtouse"),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white.withOpacity(0),
+          ),
+          onPressed: () {},
+        ),
       ),
       body: Center(
         child: ElevatedButton(
