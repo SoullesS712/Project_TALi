@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -26,7 +28,7 @@ class Map_State extends State<Home> {
   LocationData? currentLocation;
 
   static const LatLng sourceLocation = LatLng(14.026226, 99.982615);
-  static const LatLng destination = LatLng(14.026757, 99.978281);
+  static const LatLng destination = LatLng(14.0247, 99.9781);
   Location location = Location();
 
   CameraPosition? initialCameraPosition;
@@ -37,8 +39,8 @@ class Map_State extends State<Home> {
         initialCameraPosition = CameraPosition(
           target: LatLng(currentLoc.latitude!, currentLoc.longitude!),
           zoom: 14.5,
-          tilt: 59,
-          bearing: -70,
+          tilt: 90,
+          bearing: 90,
         );
         location.onLocationChanged.listen((LocationData newLoc) async {
           currentLocation = newLoc;
@@ -48,9 +50,9 @@ class Map_State extends State<Home> {
             CameraUpdate.newCameraPosition(
               CameraPosition(
                 target: LatLng(newLoc.latitude!, newLoc.longitude!),
-                zoom: 14.5,
-                tilt: 59,
-                bearing: -70,
+                zoom: 16,
+                tilt: 90,
+                bearing: 90,
               ),
             ),
           );
@@ -83,7 +85,7 @@ class Map_State extends State<Home> {
               geodesic: true,
               polylineId: const PolylineId("line"),
               width: 6,
-              color: Colors.black,
+              color: Color.fromARGB(255, 49, 49, 49),
               points: polylineCoordinates,
             ),
           );
@@ -125,6 +127,7 @@ class Map_State extends State<Home> {
     super.initState();
   }
 
+  int curentIndex = 1;
   @override
   Widget build(BuildContext context) {
     final drawerItems = ListView(
@@ -175,7 +178,7 @@ class Map_State extends State<Home> {
         centerTitle: true,
         title: const Text(
           'Talibus',
-          style: TextStyle(color: Color(0xFF54436B)),
+          style: TextStyle(color: Color.fromARGB(255, 63, 63, 63)),
         ),
         actions: [
           IconButton(
@@ -229,6 +232,18 @@ class Map_State extends State<Home> {
                 ),
               ],
             ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: curentIndex,
+        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Color.fromARGB(255, 255, 99, 221),
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_bus_sharp), label: 'Tali 1'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_bus_sharp), label: 'Tali 2')
+        ],
+      ),
       drawer: Drawer(child: drawerItems),
     );
   }

@@ -39,7 +39,12 @@ dependencies:
   flutter_svg: ^1.1.0
   google_fonts: ^3.0.1
   auto_size_text: ^3.0.0
+  http: ^0.13.5
+  flutter_launcher_icons: ^0.10.0
 
+flutter_icons:
+  android: true
+  image_path: "images/logo1.png"
 
 
 
@@ -63,7 +68,7 @@ flutter:
  
   uses-material-design: true
 
-  
+
   assets:
     - images/roadicon.png
     - images/taliroadmap.jpg
