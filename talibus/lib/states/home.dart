@@ -1,5 +1,3 @@
-// ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -171,7 +169,9 @@ class Map_State extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            drawerItems;
+          },
           icon: const Icon(Icons.arrow_forward_ios),
           color: Color(0xFF54436B),
         ),
