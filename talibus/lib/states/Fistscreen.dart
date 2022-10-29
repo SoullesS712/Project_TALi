@@ -70,7 +70,7 @@ class _firstscreen extends State<firstscreen> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(250, 200, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(240, 200, 0, 0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,7 +80,7 @@ class _firstscreen extends State<firstscreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 IconButton(
-                                  icon: Icon(
+                                  icon: const Icon(
                                     Icons.settings,
                                     size: 30,
                                   ),
@@ -90,18 +90,13 @@ class _firstscreen extends State<firstscreen> {
                                 ),
                               ],
                             ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional(-1, 0),
-                                    child: Text(
-                                      'For Admin',
-                                      textAlign: TextAlign.start,
-                                    ),
-                                  ),
-                                ],
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(context, "admin");
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text("For Admin"),
                               ),
                             ),
                           ],
