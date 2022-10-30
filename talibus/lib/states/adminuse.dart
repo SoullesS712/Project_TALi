@@ -1,32 +1,5 @@
-// import 'package:flutter/material.dart';
-
-// class Adminuse extends StatefulWidget {
-//   const Adminuse({Key? key}) : super(key: key);
-
-//   @override
-//   State<Adminuse> createState() => _AdminuseState();
-// }
-
-// class _AdminuseState extends State<Adminuse> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text("Admin use"),
-//       ),
-//       body: Center(
-//         child: ElevatedButton(
-//           onPressed: () {
-//             Navigator.pop(context);
-//           },
-//           child: const Text('Go back!'),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:roundcheckbox/roundcheckbox.dart';
 
 class Adminuse extends StatefulWidget {
   const Adminuse({Key? key}) : super(key: key);
@@ -37,93 +10,15 @@ class Adminuse extends StatefulWidget {
 
 class _AdminsetWidgetState extends State<Adminuse> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool valueBus0 = false;
+  bool valueBus1 = false;
+  bool valueBus2 = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         key: scaffoldKey,
         backgroundColor: Color(0xFFF1F4F8),
-        drawer: Drawer(
-          elevation: 16,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: 304,
-                    height: 180,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF4B39EF),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Align(
-                                  alignment: AlignmentDirectional(-0.7, 0),
-                                  child: Container(
-                                    width: 80,
-                                    height: 80,
-                                    clipBehavior: Clip.antiAlias,
-                                    decoration: const BoxDecoration(
-                                      shape: BoxShape.circle,
-                                    ),
-                                  ),
-                                ),
-                                const Expanded(
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.7, 0),
-                                    child: Icon(
-                                      Icons.edit_rounded,
-                                      color: Colors.white,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: const [
-                                Text(
-                                  '[User Name]',
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0, 8, 0, 0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: const [
-                                Text(
-                                  '[username@domain.com]',
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -206,7 +101,7 @@ class _AdminsetWidgetState extends State<Adminuse> {
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 50,
+                        height: 70,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.rectangle,
@@ -227,35 +122,29 @@ class _AdminsetWidgetState extends State<Adminuse> {
                                 size: 24,
                               ),
                             ),
-                            
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
-                                'Bus',
+                                'Bus1',
                               ),
                             ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(0.9, 0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF95A1AC),
-                                  size: 18,
-                                ),
-                              ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(240, 5, 0, 0),
                             ),
                           ],
                         ),
                       ),
                     ],
                   ),
+                  rcb(),
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width,
-                        height: 50,
+                        height: 70,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           shape: BoxShape.rectangle,
@@ -270,9 +159,8 @@ class _AdminsetWidgetState extends State<Adminuse> {
                             Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                                  
                               child: Icon(
-                                Icons.publish_sharp,
+                                Icons.bus_alert_sharp,
                                 color: Color(0xFF4B39EF),
                                 size: 24,
                               ),
@@ -281,17 +169,58 @@ class _AdminsetWidgetState extends State<Adminuse> {
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                               child: Text(
-                                'Notifications',
+                                'Bus2',
                               ),
                             ),
-                            Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(0.9, 0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF95A1AC),
-                                  size: 18,
-                                ),
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(240, 5, 0, 0),
+                            ),
+                            SizedBox(height: 12),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  rcb(),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 70,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.rectangle,
+                          border: Border.all(
+                            color: Color(0xFFF1F4F8),
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: const [
+                            Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                              //                   CheckboxListTile(
+                              //   value: this.valueBus0,
+                              //   onChanged: (bool value) {
+                              //     setState(() {
+                              //       this.valueBus0 = value;
+                              //     });
+                              //   },
+                              // ),
+                              child: Icon(
+                                Icons.bus_alert_sharp,
+                                color: Color(0xFF4B39EF),
+                                size: 24,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.all(10),
+                              child: Text(
+                                'Bus3',
                               ),
                             ),
                           ],
@@ -299,6 +228,10 @@ class _AdminsetWidgetState extends State<Adminuse> {
                       ),
                     ],
                   ),
+                  const Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
+                  ),
+                  rcb()
                 ],
               ),
               Padding(
@@ -327,5 +260,19 @@ class _AdminsetWidgetState extends State<Adminuse> {
             ],
           ),
         ));
+  }
+
+  RoundCheckBox rcb() {
+    return RoundCheckBox(
+      onTap: (selected) {
+        valueBus0 = !valueBus0;
+      },
+      checkedWidget:
+          const Icon(Icons.directions_bus_sharp, color: Colors.white),
+      uncheckedWidget: const Icon(Icons.directions_bus_sharp),
+      animationDuration: const Duration(
+        seconds: 1,
+      ),
+    );
   }
 }

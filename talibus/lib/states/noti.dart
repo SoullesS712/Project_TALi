@@ -19,6 +19,7 @@ class _NotiState extends State<Noti> {
       appBar: AppBar(
         title: const Text("Notification"),
       ),
+
       // body: Center(
       //     child: FutureBuilder<Busdata>(
       //   future: futureBusdata,
