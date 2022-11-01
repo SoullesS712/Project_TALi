@@ -8,270 +8,292 @@ class Adminuse extends StatefulWidget {
   _AdminsetWidgetState createState() => _AdminsetWidgetState();
 }
 
-class _AdminsetWidgetState extends State<Adminuse> {
+class _AdminsetWidgetState extends State<Adminuse>
+    with TickerProviderStateMixin {
+  TextEditingController? textController;
+  bool? switchListTileValue1;
+  bool? switchListTileValue2;
+  bool? switchListTileValue3;
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  bool valueBus0 = false;
-  bool valueBus1 = false;
-  bool valueBus2 = false;
+
+  @override
+  void initState() {
+    super.initState();
+    textController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    textController?.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: scaffoldKey,
-        backgroundColor: Color(0xFFF1F4F8),
-        body: SingleChildScrollView(
+      key: scaffoldKey,
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        actions: [],
+        centerTitle: false,
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 270,
-                    decoration: const BoxDecoration(
-                      color: Color(0xFF4B39EF),
+              Card(
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                color: Color.fromARGB(255, 70, 70, 70),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(60),
+                    child: Image.network(
+                      'https://png.pngtree.com/png-vector/20190704/ourlarge/pngtree-administration-icon-in-trendy-style-isolated-background-png-image_1539153.jpg',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.fill,
                     ),
-                    child: Column(
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                child: Text(
+                  'Admin',
+                  style: TextStyle(
+                    fontFamily: 'Outfit',
+                    color: Color(0xFF101213),
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+              const Divider(
+                height: 44,
+                thickness: 1,
+                indent: 24,
+                endIndent: 24,
+                color: Color(0xFFE0E3E7),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                    child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Expanded(
-                              child: Stack(
-                                children: [
-                                  Align(
-                                    alignment: const AlignmentDirectional(0, 0),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0, 105, 0, 0),
-                                      child: Container(
-                                        width: 80,
-                                        height: 80,
-                                        clipBehavior: Clip.antiAlias,
-                                        decoration: const BoxDecoration(
-                                          shape: BoxShape.circle,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Icon(
+                            Icons.directions_bus,
+                            color: Color(0xFF101213),
+                            size: 24,
+                          ),
                         ),
-                        Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-                              child: Text(
-                                'Admin',
+                        Expanded(
+                          child: SwitchListTile.adaptive(
+                            value: switchListTileValue1 ??= true,
+                            onChanged: (newValue) async {
+                              setState(() => switchListTileValue1 = newValue);
+                            },
+                            title: const Text(
+                              'Bus1',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Color(0xFF57636C),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
                               ),
                             ),
-                          ],
+                            tileColor: Colors.white,
+                            activeColor: Color(0xFF39D2C0),
+                            activeTrackColor: Color(0x3439D2C0),
+                            dense: false,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 4, 0),
+                          ),
                         ),
                       ],
                     ),
                   ),
-                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 16, 0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: const Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Icon(
+                            Icons.directions_bus,
+                            color: Color(0xFF101213),
+                            size: 24,
+                          ),
+                        ),
+                        Expanded(
+                          child: SwitchListTile.adaptive(
+                            value: switchListTileValue2 ??= true,
+                            onChanged: (newValue) async {
+                              setState(() => switchListTileValue2 = newValue);
+                            },
+                            title: const Text(
+                              'Bus2',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Color(0xFF57636C),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            tileColor: Colors.white,
+                            activeColor: const Color(0xFF39D2C0),
+                            activeTrackColor: const Color(0x3439D2C0),
+                            dense: false,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 4, 0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 5, 16, 0),
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(12),
+                    border: Border.all(
+                      color: Color(0xFFE0E3E7),
+                      width: 2,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(2, 2, 2, 2),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
+                          child: Icon(
+                            Icons.directions_bus,
+                            color: Color(0xFF101213),
+                            size: 24,
+                          ),
+                        ),
+                        Expanded(
+                          child: SwitchListTile.adaptive(
+                            value: switchListTileValue3 ??= true,
+                            onChanged: (newValue) async {
+                              setState(() => switchListTileValue3 = newValue);
+                            },
+                            title: const Text(
+                              'Bus3',
+                              style: TextStyle(
+                                fontFamily: 'Outfit',
+                                color: Color(0xFF57636C),
+                                fontSize: 14,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            tileColor: Colors.white,
+                            activeColor: const Color(0xFF39D2C0),
+                            activeTrackColor: const Color(0x3439D2C0),
+                            dense: false,
+                            controlAffinity: ListTileControlAffinity.trailing,
+                            contentPadding:
+                                const EdgeInsetsDirectional.fromSTEB(
+                                    12, 0, 4, 0),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
-                children: const [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 12, 0, 12),
-                    child: Text(
-                      'Admin Settings',
+                children: [
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: 100,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.all(5),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        child: TextFormField(
+                          controller: textController,
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: const InputDecoration(
+                            labelText: 'announcement',
+                            filled: true,
+                          ),
+                          style: const TextStyle(
+                            fontFamily: 'Poppins',
+                            fontSize: 17,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
-                ],
-              ),
-              ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                scrollDirection: Axis.vertical,
-                children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.rectangle,
-                          border: Border.all(
-                            color: Color(0xFFF1F4F8),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: const [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Icon(
-                                Icons.bus_alert_sharp,
-                                color: Color(0xFF4B39EF),
-                                size: 24,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Text(
-                                'Bus1',
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(240, 5, 0, 0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  rcb(),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.rectangle,
-                          border: Border.all(
-                            color: Color(0xFFF1F4F8),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: const [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Icon(
-                                Icons.bus_alert_sharp,
-                                color: Color(0xFF4B39EF),
-                                size: 24,
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              child: Text(
-                                'Bus2',
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(240, 5, 0, 0),
-                            ),
-                            SizedBox(height: 12),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  rcb(),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: MediaQuery.of(context).size.width,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.rectangle,
-                          border: Border.all(
-                            color: Color(0xFFF1F4F8),
-                            width: 1,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: const [
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
-                              //                   CheckboxListTile(
-                              //   value: this.valueBus0,
-                              //   onChanged: (bool value) {
-                              //     setState(() {
-                              //       this.valueBus0 = value;
-                              //     });
-                              //   },
-                              // ),
-                              child: Icon(
-                                Icons.bus_alert_sharp,
-                                color: Color(0xFF4B39EF),
-                                size: 24,
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.all(10),
-                              child: Text(
-                                'Bus3',
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(200, 0, 0, 0),
-                  ),
-                  rcb()
                 ],
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 20),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.all(14.0),
-                          textStyle: const TextStyle(fontSize: 17),
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, "adminuse");
-                        },
-                        child: const Text('log out'),
-                      ),
-                    ),
-                  ],
+                padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    padding: const EdgeInsets.all(14.0),
+                    textStyle: const TextStyle(fontSize: 17),
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, "adminuse");
+                  },
+                  child: const Text('log out'),
                 ),
               ),
             ],
           ),
-        ));
-  }
-
-  RoundCheckBox rcb() {
-    return RoundCheckBox(
-      onTap: (selected) {
-        valueBus0 = !valueBus0;
-      },
-      checkedWidget:
-          const Icon(Icons.directions_bus_sharp, color: Colors.white),
-      uncheckedWidget: const Icon(Icons.directions_bus_sharp),
-      animationDuration: const Duration(
-        seconds: 1,
+        ),
       ),
     );
   }

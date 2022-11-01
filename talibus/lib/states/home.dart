@@ -26,7 +26,7 @@ class Map_State extends State<Home> {
   LocationData? currentLocation;
 
   static const LatLng sourceLocation = LatLng(14.026226, 99.982615);
-  static const LatLng destination = LatLng(14.0247, 99.9781);
+  static const LatLng destination = LatLng(14.0242, 99.9781);
   Location location = Location();
 
   CameraPosition? initialCameraPosition;
@@ -36,25 +36,12 @@ class Map_State extends State<Home> {
         currentLocation = currentLoc;
         initialCameraPosition = CameraPosition(
           target: LatLng(currentLoc.latitude!, currentLoc.longitude!),
-          zoom: 14.5,
-          tilt: 90,
-          bearing: 90,
+          zoom: 15.5,
         );
         location.onLocationChanged.listen((LocationData newLoc) async {
           currentLocation = newLoc;
 
           final GoogleMapController controller = await _controller.future;
-          controller.animateCamera(
-            CameraUpdate.newCameraPosition(
-              CameraPosition(
-                target: LatLng(newLoc.latitude!, newLoc.longitude!),
-                zoom: 16,
-                tilt: 90,
-                bearing: 90,
-              ),
-            ),
-          );
-          setState(() {});
         });
       },
     );
@@ -68,6 +55,7 @@ class Map_State extends State<Home> {
       optimizeWaypoints: true,
     );
     if (result.points.isNotEmpty) {
+      // ignore: avoid_function_literals_in_foreach_calls
       result.points.forEach(
         (PointLatLng point) {
           polylineCoordinates.add(LatLng(point.latitude, point.longitude));
@@ -247,4 +235,10 @@ class Map_State extends State<Home> {
       drawer: Drawer(child: drawerItems),
     );
   }
+
+  List<LatLng> map1 = [
+    const LatLng(14.0218, 99.9900),
+    const LatLng(14.0219, 99.9892),
+    const LatLng(14.0234, 99.9818),
+  ];
 }
