@@ -1,9 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.talibus">
+    <uses-permission android:name="android.permission.BLUETOOTH" />  
+	 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />  
+	 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>  
    <application
         android:label="talibus"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -34,3 +38,5 @@
                android:value="AIzaSyAs4roV6arj3H0HBdz1aVPL44p4FnJ_6LQ"/>
     </application>
 </manifest>
+
+

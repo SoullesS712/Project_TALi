@@ -15,23 +15,22 @@ class _NotiState extends State<Noti> {
 
   @override
   Widget build(BuildContext context) {
+    var container = Container(
+      // ignore: prefer_const_constructors
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF54436B), Color(0xFF50CB93), Color(0xFFACFFAD)],
+          begin: AlignmentDirectional(1, -0.44),
+          end: AlignmentDirectional(-1, 0.44),
+        ),
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notification"),
+        title: const Text("Announcement"),
+        flexibleSpace: container,
+        centerTitle: true,
       ),
-
-      // body: Center(
-      //     child: FutureBuilder<Busdata>(
-      //   future: futureBusdata,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasData) {
-      //       return Text(snapshot.data!.idBus);
-      //     } else if (snapshot.hasError) {
-      //       return Text('${snapshot.error}');
-      //     }
-      //     return const CircularProgressIndicator();
-      //   },
-      // )),
     );
   }
 }

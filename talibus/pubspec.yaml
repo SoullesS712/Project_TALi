@@ -42,6 +42,7 @@ dependencies:
   http: ^0.13.5
   flutter_launcher_icons: ^0.10.0
   roundcheckbox: ^2.0.5
+  app_settings: ^4.1.8
 
 flutter_icons:
   android: true

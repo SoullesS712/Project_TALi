@@ -120,8 +120,10 @@ class Map_State extends State<Home> {
       children: [
         // ignore: prefer_const_constructors
         DrawerHeader(
-          child:
-              const Padding(padding: EdgeInsets.all(30.0), child: Text("Menu")),
+          child: const Padding(
+            padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
+            child: Text("Menu"),
+          ),
         ),
         ListTile(
           title: const Text("Notification"),
