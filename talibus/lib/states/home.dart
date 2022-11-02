@@ -12,6 +12,16 @@ class Home extends StatefulWidget {
   State<Home> createState() => Map_State();
 }
 
+bool checkcar = true;
+bool checkcarr = true;
+
+sort(int c) {
+  if (c == 0)
+    return checkcar = !checkcar;
+  else
+    return checkcarr = !checkcarr;
+}
+
 class Map_State extends State<Home> {
   final Completer<GoogleMapController> _controller = Completer();
   PolylinePoints polylinePoints = PolylinePoints();
@@ -65,10 +75,6 @@ class Map_State extends State<Home> {
         () {
           _polylines.add(
             Polyline(
-              startCap: Cap.roundCap,
-              endCap: Cap.roundCap,
-              jointType: JointType.round,
-              geodesic: true,
               polylineId: const PolylineId("line"),
               width: 6,
               color: Color.fromARGB(255, 49, 49, 49),
@@ -121,7 +127,7 @@ class Map_State extends State<Home> {
         // ignore: prefer_const_constructors
         DrawerHeader(
           child: const Padding(
-            padding: EdgeInsets.fromLTRB(2, 2, 2, 2),
+            padding: EdgeInsets.fromLTRB(0, 10, 2, 2),
             child: Text("Menu"),
           ),
         ),
@@ -194,6 +200,7 @@ class Map_State extends State<Home> {
                     ),
                     child: GoogleMap(
                       zoomControlsEnabled: true,
+                      myLocationEnabled: true,
                       initialCameraPosition: initialCameraPosition!,
                       polylines: _polylines,
                       markers: {
@@ -204,15 +211,15 @@ class Map_State extends State<Home> {
                               currentLocation!.longitude!),
                         ),
                         Marker(
-                          markerId: const MarkerId("source"),
-                          icon: sourceIcon,
-                          position: sourceLocation,
-                        ),
+                            markerId: const MarkerId("source"),
+                            icon: sourceIcon,
+                            position: sourceLocation,
+                            visible: checkcar),
                         Marker(
-                          markerId: const MarkerId("destination"),
-                          icon: destinationIcon,
-                          position: destination,
-                        ),
+                            markerId: const MarkerId("destination"),
+                            icon: destinationIcon,
+                            position: destination,
+                            visible: checkcarr),
                       },
                       onMapCreated: (GoogleMapController controller) {
                         _controller.complete(controller);
@@ -227,9 +234,16 @@ class Map_State extends State<Home> {
         backgroundColor: Color.fromARGB(255, 255, 255, 255),
         selectedItemColor: Colors.orange,
         unselectedItemColor: Color.fromARGB(255, 255, 99, 221),
+        onTap: (int curentIndex) {
+          setState(() {
+            sort(curentIndex);
+          });
+        },
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(Icons.directions_bus_sharp), label: 'Tali 1'),
+            icon: Icon(Icons.directions_bus_sharp),
+            label: 'Tali 1',
+          ),
           BottomNavigationBarItem(
               icon: Icon(Icons.directions_bus_sharp), label: 'Tali 2')
         ],
