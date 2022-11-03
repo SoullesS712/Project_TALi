@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
+import 'dart:math';
 
 class Home extends StatefulWidget {
   const Home({
@@ -12,9 +13,10 @@ class Home extends StatefulWidget {
   State<Home> createState() => Map_State();
 }
 
+double distance = 0;
 bool checkcar = true;
 bool checkcarr = true;
-
+//void sdd; ontap(){}
 sort(int c) {
   if (c == 0)
     return checkcar = !checkcar;
@@ -26,8 +28,19 @@ class Map_State extends State<Home> {
   final Completer<GoogleMapController> _controller = Completer();
   PolylinePoints polylinePoints = PolylinePoints();
 
+  double calculateDistance(lat1, lon1, lat2, lon2) {
+    var p = 0.017453292519943295;
+    var a = 0.5 -
+        cos((lat2 - lat1) * p) / 2 +
+        cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2;
+    return 12742 * asin(sqrt(a));
+  }
+
+  double totalDistance = 0;
+
   final Set<Polyline> _polylines = <Polyline>{};
   List<LatLng> polylineCoordinates = [];
+  List<LatLng> polylineCoordinates0 = [];
 
   BitmapDescriptor sourceIcon = BitmapDescriptor.defaultMarker;
   BitmapDescriptor destinationIcon = BitmapDescriptor.defaultMarker;
@@ -35,8 +48,8 @@ class Map_State extends State<Home> {
 
   LocationData? currentLocation;
 
-  static const LatLng sourceLocation = LatLng(14.026226, 99.982615);
-  static const LatLng destination = LatLng(14.0242, 99.9781);
+  static const LatLng sourceLocation = LatLng(14.0247, 99.9776);
+  static const LatLng destination = LatLng(14.0218, 99.9900);
   Location location = Location();
 
   CameraPosition? initialCameraPosition;
@@ -65,20 +78,173 @@ class Map_State extends State<Home> {
       optimizeWaypoints: true,
     );
     if (result.points.isNotEmpty) {
-      // ignore: avoid_function_literals_in_foreach_calls
       result.points.forEach(
         (PointLatLng point) {
-          polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+          polylineCoordinates.add(LatLng(14.0219, 99.9895));
+
+          polylineCoordinates.add(LatLng(14.0220, 99.9857));
+
+          polylineCoordinates.add(LatLng(14.0234, 99.9819));
+
+          polylineCoordinates.add(LatLng(14.0236, 99.9760));
+
+          polylineCoordinates.add(LatLng(14.0210, 99.9759));
+
+          polylineCoordinates.add(LatLng(14.0211, 99.9721));
+
+          polylineCoordinates.add(LatLng(14.0247, 99.9722));
+
+          polylineCoordinates.add(LatLng(14.0247, 99.9760));
+
+          polylineCoordinates.add(LatLng(14.0238, 99.9760));
+
+          polylineCoordinates.add(LatLng(14.0236, 99.9814));
+
+          polylineCoordinates.add(LatLng(14.0221, 99.9857));
+
+          polylineCoordinates.add(LatLng(14.0220, 99.9900));
+
+          polylineCoordinates.add(LatLng(14.0218, 99.9899));
         },
       );
       setState(
         () {
           _polylines.add(
             Polyline(
+              startCap: Cap.buttCap,
+              endCap: Cap.buttCap,
+              jointType: JointType.round,
+              geodesic: true,
               polylineId: const PolylineId("line"),
-              width: 6,
-              color: Color.fromARGB(255, 49, 49, 49),
+              width: 3,
+              color: Color.fromARGB(255, 255, 132, 237),
               points: polylineCoordinates,
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  void getPolyPoints0() async {
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      "AIzaSyDN6tGyRHtw8bjXWdFn_QjBMGVkU70T7BQ",
+      PointLatLng(sourceLocation.latitude, sourceLocation.longitude),
+      PointLatLng(destination.latitude, destination.longitude),
+      optimizeWaypoints: true,
+    );
+    if (result.points.isNotEmpty) {
+      result.points.forEach(
+        (PointLatLng point) {
+          polylineCoordinates0.add(LatLng(14.0283, 99.9840));
+
+          polylineCoordinates0.add(LatLng(14.0265, 99.9839));
+
+          polylineCoordinates0.add(LatLng(14.0265, 99.9824));
+
+          polylineCoordinates0.add(LatLng(14.0267, 99.9822));
+
+          polylineCoordinates0.add(LatLng(14.0267, 99.9808));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9807));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9800));
+
+          polylineCoordinates0.add(LatLng(14.0278, 99.9793));
+
+          polylineCoordinates0.add(LatLng(14.0282, 99.9795));
+
+          polylineCoordinates0.add(LatLng(14.0289, 99.9788));
+
+          polylineCoordinates0.add(LatLng(14.0283, 99.9780));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9775));
+
+          polylineCoordinates0.add(LatLng(14.0266, 99.9785));
+
+          polylineCoordinates0.add(LatLng(14.0253, 99.9792));
+
+          polylineCoordinates0.add(LatLng(14.0237, 99.9792));
+
+          polylineCoordinates0.add(LatLng(14.0236, 99.9817));
+
+          polylineCoordinates0.add(LatLng(14.0225, 99.9845));
+
+          polylineCoordinates0.add(LatLng(14.0224, 99.9844));
+
+          polylineCoordinates0.add(LatLng(14.0234, 99.9819));
+
+          polylineCoordinates0.add(LatLng(14.0236, 99.9761));
+
+          polylineCoordinates0.add(LatLng(14.0212, 99.9759));
+
+          polylineCoordinates0.add(LatLng(14.0210, 99.9738));
+
+          polylineCoordinates0.add(LatLng(14.0248, 99.9738));
+
+          polylineCoordinates0.add(LatLng(14.0247, 99.9760));
+
+          polylineCoordinates0.add(LatLng(14.0237, 99.9760));
+
+          polylineCoordinates0.add(LatLng(14.0237, 99.9791));
+
+          polylineCoordinates0.add(LatLng(14.0253, 99.9792));
+
+          polylineCoordinates0.add(LatLng(14.0260, 99.9789));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9775));
+
+          polylineCoordinates0.add(LatLng(14.0284, 99.9781));
+
+          polylineCoordinates0.add(LatLng(14.0294, 99.9794));
+
+          polylineCoordinates0.add(LatLng(14.0294, 99.9795));
+
+          polylineCoordinates0.add(LatLng(14.0289, 99.9788));
+
+          polylineCoordinates0.add(LatLng(14.0281, 99.9796));
+
+          polylineCoordinates0.add(LatLng(14.0279, 99.9801));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9801));
+
+          polylineCoordinates0.add(LatLng(14.0275, 99.9809));
+
+          polylineCoordinates0.add(LatLng(14.0276, 99.9811));
+
+          polylineCoordinates0.add(LatLng(14.0284, 99.9812));
+
+          polylineCoordinates0.add(LatLng(14.0287, 99.9816));
+
+          polylineCoordinates0.add(LatLng(14.0281, 99.9817));
+
+          polylineCoordinates0.add(LatLng(14.0274, 99.9815));
+
+          polylineCoordinates0.add(LatLng(14.0270, 99.9814));
+
+          polylineCoordinates0.add(LatLng(14.0267, 99.9812));
+
+          polylineCoordinates0.add(LatLng(14.0267, 99.9822));
+
+          polylineCoordinates0.add(LatLng(14.0265, 99.9824));
+
+          polylineCoordinates0.add(LatLng(14.0265, 99.9829));
+
+          polylineCoordinates0.add(LatLng(14.0265, 99.9839));
+        },
+      );
+      setState(
+        () {
+          _polylines.add(
+            Polyline(
+              startCap: Cap.buttCap,
+              endCap: Cap.buttCap,
+              jointType: JointType.round,
+              geodesic: true,
+              polylineId: const PolylineId("line"),
+              width: 3,
+              color: Color.fromARGB(255, 255, 181, 62),
+              points: polylineCoordinates0,
             ),
           );
         },
@@ -115,6 +281,7 @@ class Map_State extends State<Home> {
   void initState() {
     initialLocation();
     getPolyPoints();
+    getPolyPoints0();
     setSourceAndDestinationIcons();
     super.initState();
   }
@@ -199,10 +366,10 @@ class Map_State extends State<Home> {
                       topRight: Radius.circular(32),
                     ),
                     child: GoogleMap(
-                      zoomControlsEnabled: true,
-                      myLocationEnabled: true,
-                      initialCameraPosition: initialCameraPosition!,
                       polylines: _polylines,
+                      zoomControlsEnabled: true,
+                      myLocationEnabled: false,
+                      initialCameraPosition: initialCameraPosition!,
                       markers: {
                         Marker(
                           markerId: const MarkerId("currentLocation"),

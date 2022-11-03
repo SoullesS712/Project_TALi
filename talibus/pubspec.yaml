@@ -43,6 +43,7 @@ dependencies:
   flutter_launcher_icons: ^0.10.0
   roundcheckbox: ^2.0.5
   app_settings: ^4.1.8
+  maps_toolkit: ^2.0.1
 
 flutter_icons:
   android: true
